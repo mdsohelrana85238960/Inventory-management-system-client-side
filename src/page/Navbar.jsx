@@ -19,7 +19,7 @@ const Navbar = () => {
                <li className="justify-center text-xl"> <Link to= '/watchDemo' > Watch Demo </Link> </li>
                
                {
-                user ? <li className="justify-center text-xl"> <Link to='/dashboard'> Dashboard </Link> </li> : <> </>
+                user  ? <li className="justify-center text-xl"> <Link to='/dashboard'> Dashboard </Link> </li> : <> </>
                }
                 {
                     user ? <> </> : <li className="justify-center text-xl"> <Link to='/register'> Register </Link> </li>

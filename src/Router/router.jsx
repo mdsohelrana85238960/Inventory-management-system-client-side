@@ -81,7 +81,7 @@ const router = createBrowserRouter([
           element:<SaleCollection></SaleCollection>
         },
         {
-          path:'checkOut',
+          path:'checkOut/',
           element:<CheckOut></CheckOut>
         },
         {

@@ -39,7 +39,7 @@ const UpdateProducts = () => {
         console.log(products);
 
         axiosSecure.put(`/products/${id}`, products)
-  .then((response) => {
+        .then((response) => {
     console.log(response.data); 
     if (response.data.modifiedCount > 0) {
       swal("Product updated successfully");

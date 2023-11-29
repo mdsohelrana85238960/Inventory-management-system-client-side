@@ -3,17 +3,19 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaEdit, FaTrashAlt,  } from "react-icons/Fa";
 import swal from "sweetalert";
+import { Helmet } from "react-helmet";
+import useAuth from "../hooks/useAuth";
 
 
 
 const ProductManagement = () => {
-    
+    const {user} = useAuth();
     const axiosSecure = useAxiosSecure();
    
     const {data: products = [],refetch} = useQuery({
         queryKey:['products'],
         queryFn: async () =>{
-            const res = await axiosSecure.get('/products');
+            const res = await axiosSecure.get(`/products/${user.email}`);
             return res.data;
         }
     })
@@ -33,6 +35,9 @@ const ProductManagement = () => {
 
     return (
         <div className="mb-16">
+          <Helmet >
+            <title>Inventory | Product</title>
+            </Helmet>
             <div className="flex justify-between items-center">
                 <h1 className="text-xl font-medium"> Product Count : {products.length} </h1>
                <Link to= '/dashboard/addProduct' >  <button className="btn btn-primary">Add Product</button> </Link>

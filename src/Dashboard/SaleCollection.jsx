@@ -3,18 +3,21 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import useAuth from "../hooks/useAuth";
 
 
 
 
 const SaleCollection = () => {
+  const {user} = useAuth();
 const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
    
     const {data: products = [],refetch} = useQuery({
         queryKey:['products'],
         queryFn: async () =>{
-            const res = await axiosSecure.get('/products');
+            const res = await axiosSecure.get(`/products/${user.email}`,);
             return res.data;
         }
     })
@@ -42,7 +45,9 @@ const navigate = useNavigate();
 
     return (
         <div className="mb-16">
-            
+            <Helmet >
+            <title>Inventory | sale </title>
+            </Helmet>
             <div className="flex mt-16 items-center justify-between"> 
             <p className="text-3xl font-medium">Sale Collection</p>
              <div>

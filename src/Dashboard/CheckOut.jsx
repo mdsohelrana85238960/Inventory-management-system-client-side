@@ -1,18 +1,40 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import swal from "sweetalert";
+import { Helmet } from "react-helmet";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import { useParams } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+
 
 
 const CheckOut = () => {
+  const {user} = useAuth();
+    const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
-   
+    const {id} = useParams();
     const {data: checkOut = [],refetch} = useQuery({
         queryKey:['checkOut'],
         queryFn: async () =>{
-            const res = await axiosSecure.get('/checkOut');
+            const res = await axiosSecure.get(`/checkOut`);
             return res.data;
         }
     })
+
+   
+
+  //   console.log(id)
+
+  //   const {data: products =[] ,} = useQuery({
+  //       queryKey:['products'],
+  //       queryFn: async () =>{
+  //           const res = await axiosSecure.get(`/singleProduct/${id}`);
+  //           return res.data;
+  //       }
+  //   })
+  // console.log(products)
+
+  //
 
     const handleSoldProduct = (product) =>{
       console.log(product)
@@ -21,20 +43,51 @@ const CheckOut = () => {
       .then(res =>{
           console.log(res)
           if (res.data.insertedId) {
-            refetch()
-              swal("Good job!", "insertedId Successfully!", "success");
-          }
+                   refetch()
+                    swal("Good job!", "insertedId Successfully!", "success");
+
+             
+              //   const count = product.saleCount +1;
+              //   const quantity = product.quantity -1;
+              // const newUpdate = {count,quantity}
+              // console.log(newUpdate)
+
+              // axiosPublic.patch(`/products`, newUpdate)
+              // .then((res) => {
+              //   if (res.data.modifiedCount){
+              //     alert('done')
+              //     axiosPublic.delete(`/sales/${id}`)
+              //     .then(res =>{
+              //       console.log('first')
+              //       refetch()
+              //       swal("Good job!", "insertedId Successfully!", "success");
+              //     })
+          
+              //   }
+
+              // })
+                
+          
+
+
+
+
+            }
       })
     }
 
+   
 
 
     return (
         <div className="mb-16">
             
-           
+            <Helmet >
+            <title>Inventory | checkOut</title>
+            </Helmet>
                 
-                
+            <h1 className="text-xl font-medium"> Check Out  </h1>
+
             <section className="mt-16">
                 
             <div className="overflow-x-auto">

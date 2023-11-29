@@ -1,11 +1,13 @@
 import swal from "sweetalert";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 
 const AddProduct = () => {
     const axiosSecure = useAxiosSecure();
-
+    const {user} = useAuth()
     const {data: shop =[] ,} = useQuery({
         queryKey:['shop'],
         queryFn: async () =>{
@@ -29,7 +31,7 @@ const AddProduct = () => {
         const date = form.date.value;
         const shopId = shop[0]._id;
         const shopName = shop[0].shopName;
-        const userEmail = shop[0].email;
+        const userEmail = user.email;
         const sellingPrice = cost + (7.5%100)+ profit ;
         const saleCount = 0;
         
@@ -38,7 +40,7 @@ const AddProduct = () => {
         const products = {shopId,saleCount,date,sellingPrice,shopName,userEmail,productName,discount, productPhoto,description, location,cost,profit,quantity}
         console.log(products);
 
-        axiosSecure.post('/products' , products)
+        axiosSecure.post(`/products`, products)
         .then(res =>{
             console.log(res.data.insertedId)
             if (res.data.insertedId) {
@@ -52,6 +54,10 @@ const AddProduct = () => {
     return (
         
         <div className="my-20">
+
+<Helmet >
+            <title>Inventory | AddProduct</title>
+            </Helmet>
             <h1 className="text-center text-5xl font-bold underline "> Add Products</h1>
            <form onSubmit={handleAddProduct}>
             <div className="card-body grid md:grid-cols-2 gap-8">
