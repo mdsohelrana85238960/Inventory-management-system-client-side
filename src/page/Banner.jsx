@@ -6,15 +6,16 @@ const Banner = () => {
 
     return (
         <Carousel>
+             <div>
+                    <img src="https://i.ytimg.com/vi/fBonRLiYdYA/maxresdefault.jpg" />
+                    
+                </div>
 
 <div>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDGCB8njlidSymCTbJ6r0Zz-pa5dGId2E3rn0rchi3HgfSUie7_Ebs_qsNBunsHAYJd0k&usqp=CAU"  />
                     
                 </div>
-                <div>
-                    <img src="https://i.ytimg.com/vi/fBonRLiYdYA/maxresdefault.jpg" />
-                    
-                </div>
+               
                 <div>
                     <img src="https://i.ytimg.com/vi/7RDwcUMJ2lU/maxresdefault.jpg"  />
                     

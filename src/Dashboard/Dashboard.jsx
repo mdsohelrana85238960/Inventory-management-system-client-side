@@ -1,7 +1,17 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import swal from "sweetalert";
+import useAuth from "../hooks/useAuth";
 
 
 const Dashboard = () => {
+    const {user,LogOut} = useAuth();
+    const handleSignOut = () =>{
+        LogOut()
+        .then(result => {
+            console.log(result)
+            swal("Good job!", "Logout Successfully!", "success");
+        })
+      }
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-orange-200 ">
@@ -10,17 +20,18 @@ const Dashboard = () => {
 
                 </div>
             <ul className="menu font-medium">
-                <li>  <NavLink to='/dashboard/dashboardHome'>Home</NavLink></li>
+                {/* <li>  <NavLink to='/dashboard'>Home</NavLink></li> */}
 
                 <li>  <NavLink to='/dashboard/management'>Product Management</NavLink></li>
 
                 <li>  <NavLink to='/dashboard/saleCollection'>Sale Collection</NavLink></li>
 
                 <li>  <NavLink to='/dashboard/checkOut'> Check-Out</NavLink></li>
+                <li>  <NavLink to='/dashboard/saleSummary'> Sale Summary </NavLink></li>
                 <li>  <NavLink to='/dashboard/shopManagement'> Shop Management</NavLink></li>
                 <li>  <NavLink to='/'> Menu</NavLink></li>
 
-                <li>  <NavLink to= '/'>Log Out</NavLink></li>
+                <li onClick={handleSignOut} className="justify-center text-xl"> <Link > Logout </Link> </li>
                 </ul>
 
         </div>

@@ -17,6 +17,9 @@ import SaleCollection from "../Dashboard/SaleCollection";
 import CheckOut from "../Dashboard/CheckOut";
 import ShopManagement from "../Dashboard/ShopManagement";
 import WatchDemo from "../page/WatchDemo";
+import Payment from "../Dashboard/Payments/Payment";
+import SaleSummary from "../Dashboard/Payments/SaleSummary";
+
 
 const router = createBrowserRouter([
     {
@@ -56,7 +59,7 @@ const router = createBrowserRouter([
       errorElement:<ErrorPage></ErrorPage>,
       children:[
         {
-          path:'dashboardHome',
+          index: true,
           element:<DashboardHome></DashboardHome>
         },
         {
@@ -88,6 +91,16 @@ const router = createBrowserRouter([
           path:'shopManagement',
           element:<ShopManagement></ShopManagement>
         },
+        {
+          path:'saleSummary',
+          element:<SaleSummary></SaleSummary>
+        },
+        {
+          path:'payments/:id',
+          element:<Payment></Payment>,
+          loader:({params})=>fetch(`http://localhost:5000/create-payment-intent/${params.id}`)
+        },
+        
       ]
     }
 
