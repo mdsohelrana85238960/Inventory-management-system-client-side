@@ -22,7 +22,7 @@ const AddProduct = () => {
         const form = e.target
         const productName = form.productName.value;
         const productPhoto = form.productPhoto.value;
-        const quantity = form.quantity.value;
+        const quantity = parseInt(form.quantity.value)
         const location = form.location.value;
         const cost = form.cost.value;
         const profit = form.profit.value;

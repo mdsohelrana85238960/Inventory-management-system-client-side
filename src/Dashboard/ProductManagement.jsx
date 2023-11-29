@@ -28,7 +28,7 @@ const ProductManagement = () => {
             console.log(res);
             if (res.data.deletedCount>0) {
                 refetch();
-                swal("Good job!", "insertedId Successfully!", "success");
+                swal("Good job!", "delete Successfully!", "success");
             }
         } )
     }

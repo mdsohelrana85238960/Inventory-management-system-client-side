@@ -27,7 +27,7 @@ const navigate = useNavigate();
       // const {_id,...filterProduct} = product
       product.productId = product._id
       delete product._id
-      axiosSecure.post('/checkOut' , product)
+      axiosSecure.post('/checkOut',product)
       .then(res =>{
           console.log(res)
           if (res.data.insertedId) {
