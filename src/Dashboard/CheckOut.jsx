@@ -11,12 +11,17 @@ const CheckOut = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { data: checkOut = [], refetch } = useQuery({
-    queryKey: ["checkOut"],
+    queryKey: ["checkOut", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/checkOut/${user.email}`);
+      const res = await axiosSecure.get(`/checkOut/${user?.email}`);
+      console.log(res.data)
       return res.data;
+
     },
   }); 
+  
+
+ 
 
   const handleSoldProduct = (product) => {
     const { _id: id, ...restProduct } = product;

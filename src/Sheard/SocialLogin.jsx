@@ -17,7 +17,7 @@ const SocialLogin = () => {
   
     
    const handleGoogleLogin = () =>{
-    const from = location.state?.from?.pathname || '/' 
+    const from = location.state?.from?.pathname || '/createStore' 
     googleLogin()
     .then(result => {
       // console.log(result.user)

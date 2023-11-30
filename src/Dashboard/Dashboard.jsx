@@ -1,9 +1,13 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import swal from "sweetalert";
 import useAuth from "../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+
 
 
 const Dashboard = () => {
+    const axiosSecure = useAxiosSecure()
     const {user,LogOut} = useAuth();
     const handleSignOut = () =>{
         LogOut()
@@ -12,6 +16,20 @@ const Dashboard = () => {
             swal("Good job!", "Logout Successfully!", "success");
         })
       }
+
+      const {data: users = [],refetch} = useQuery({
+        queryKey:['userRole', user?.email],
+        queryFn: async () =>{
+            const res = await axiosSecure.get('/users');
+            return res.data;
+        }
+    })
+    
+    const admin = users?.find(item => item?.email === user?.email )
+   
+    console.log(admin?.role)
+   
+
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-orange-200 ">
@@ -22,15 +40,29 @@ const Dashboard = () => {
             <ul className="menu font-medium">
                 {/* <li>  <NavLink to='/dashboard'>Home</NavLink></li> */}
 
-                <li>  <NavLink to='/dashboard/management'>Product Management</NavLink></li>
-
-                <li>  <NavLink to='/dashboard/saleCollection'>Sale Collection</NavLink></li>
-
+                {/* <li>  <NavLink to='/dashboard/management'>Product Management</NavLink></li>
+                <li>  <NavLink to='/dashboard/saleCollection'>Sales Collection</NavLink></li>
                 <li>  <NavLink to='/dashboard/checkOut'> Check-Out</NavLink></li>
-                <li>  <NavLink to='/dashboard/saleSummary'> Sale Summary </NavLink></li>
-                <li>  <NavLink to='/dashboard/shopManagement'> Shop Management</NavLink></li>
-                <li>  <NavLink to='/'> Menu</NavLink></li>
 
+                <li>  <NavLink to='/dashboard/saleSummary'> Sales Summary </NavLink></li>
+                <li>  <NavLink to='/dashboard/shopManagement'> Shop Management</NavLink></li> */}
+
+               {
+                admin?.role === "manager" && <>
+                <li>  <NavLink to='/dashboard/management'>Product Management</NavLink></li>
+                <li>  <NavLink to='/dashboard/saleCollection'>Sales Collection</NavLink></li>
+                <li>  <NavLink to='/dashboard/checkOut'> Check-Out</NavLink></li>
+                 </>
+               }
+
+               {
+                admin?.role === "admin" && <>
+                 <li>  <NavLink to='/dashboard/saleSummary'> Sales Summary </NavLink></li>
+                <li>  <NavLink to='/dashboard/shopManagement'> Shop Management</NavLink></li>
+                 </>
+               }
+
+                <li>  <NavLink to='/'> Menu</NavLink></li>
                 <li onClick={handleSignOut} className="justify-center text-xl"> <Link > Logout </Link> </li>
                 </ul>
 

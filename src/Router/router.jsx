@@ -19,6 +19,7 @@ import ShopManagement from "../Dashboard/ShopManagement";
 import WatchDemo from "../page/WatchDemo";
 import Payment from "../Dashboard/Payments/Payment";
 import SaleSummary from "../Dashboard/Payments/SaleSummary";
+import AdminSaleSummary from "../Dashboard/AdminSaleSummary";
 
 
 const router = createBrowserRouter([
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
           path:'payments/:id',
           element:<Payment></Payment>,
           loader:({params})=>fetch(`http://localhost:5000/create-payment-intent/${params.id}`)
+        },
+        {
+          path:'adminSaleSummary',
+          element:<AdminSaleSummary></AdminSaleSummary>,
         },
         
       ]

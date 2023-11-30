@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
-import { Link } from "react-router-dom";
-import { FaEdit } from "react-icons/Fa";
+
 import { Helmet } from "react-helmet";
 import swal from "sweetalert";
 
@@ -52,7 +51,7 @@ const ShopManagement = () => {
         <th>Email</th>
         <th>Name</th>
         <th>Role</th>
-        <th>Action</th>
+        
       </tr>
     </thead>
     <tbody>
@@ -78,11 +77,7 @@ const ShopManagement = () => {
               {product.role === 'admin' ? <p className="text-lg text-red-500 font-bold">admin</p> : <button onClick={() => handleAdmin(product)} className="btn text-blue-400 btn-md">{product.role} </button> }
             </td>
             <td> {product.name} </td>
-            <td>
-                  <button onClick={() => handleDeleteProduct(product._id)} className="btn text-red-300 btn-ghost btn-lg">
-                    delete
-                  </button>
-                </td> 
+           
             
             
            

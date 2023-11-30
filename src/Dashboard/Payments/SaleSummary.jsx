@@ -29,70 +29,7 @@ const SaleSummary = () => {
           <Helmet >
             <title>Inventory | payments</title>
             </Helmet>
-            {/* <div className="flex justify-between items-center">
-                <h1 className="text-xl font-medium"> Product Count : {sales.length} </h1>
-                 <button className="btn btn-primary">Add Product</button>
-            </div>
-             
-            <section className="mt-16">
-                
-            <div className="overflow-x-auto">
-  <table className="table table-zebra w-full">
-    
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Product Image</th>
-        <th>Product Name</th>
-        <th>Product Quantity</th>
-        <th>Sale Count</th>
-        <th>Update</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-    
-    {
-        sales?.map((product, index) =>   <tr key={product._id}>
-            <th>{index +1} </th>
-            <td>
-          <div className="flex items-center gap-3">
-            <div className="avatar">
-              <div className="mask mask-squircle w-12 h-12">
-                <img src= {product.productPhoto} alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
             
-          </div>
-        </td>
-            
-            <td> {product.productName} </td>
-
-            <td> {product.quantity} </td>
-
-            <td> {product.saleCount} </td>
-
-
-            
-            
-            
-           
-          </tr>
-          )
-    }
-
-    
-     
-    </tbody>
-  </table>
-</div>
-
-
-            </section> */}
-
-    {/* const totalProfit = sales.reduce((acc, product) => acc + product.saleCount, 0);
-    const totalCost = sales.reduce((acc, product) => acc + product.cost, 0); */}
-    
 
 
 <section className="flex mt-20 justify-center gap-8">
@@ -100,7 +37,7 @@ const SaleSummary = () => {
 <div className="card   w-60 bg-neutral text-neutral-content">
 <div className="card-body items-center text-center">
 
-<p className="text-3xl"> Total sale : {sales.length}   </p> 
+<p className="text-2xl"> Total sale : {sales.length}   </p> 
 
 </div>
 </div>
@@ -108,7 +45,7 @@ const SaleSummary = () => {
 <div className="card  w-60 bg-neutral text-neutral-content">
 <div className="card-body items-center text-center">
 
-<p className="text-3xl"> Total profit : {totalProfit}   </p> 
+<p className="text-2xl"> Total profit : {totalProfit}   </p> 
 
 </div>
 </div>
@@ -116,7 +53,7 @@ const SaleSummary = () => {
 <div className="card   w-60  bg-neutral text-neutral-content">
 <div className="card-body items-center text-center">
 
-<p className="text-3xl"> Total Cost : {totalCost}   </p> 
+<p className="text-2xl"> Total Invest : {totalCost}   </p> 
 
 </div>
 </div>
@@ -154,7 +91,7 @@ const SaleSummary = () => {
             
             <td> {product.productName} </td>
             <td> {product.location} </td>
-            <td> {totalSale} </td>
+            <td> {parseInt(product.cost) - parseInt(product.profit) } </td>
             <td> {product.date} </td>
 
           

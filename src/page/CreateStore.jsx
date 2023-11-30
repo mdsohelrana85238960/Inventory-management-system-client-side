@@ -34,6 +34,7 @@ const handleShop = e =>{
                 shopId: data.data.insertedId,
                 role:'manager'
             }
+            
             axiosPublic.patch(`/users/${user?.email}`,shopManager)
             .then(res =>{
                 if (res.data?.modifiedCount) {

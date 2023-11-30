@@ -99,7 +99,7 @@ const navigate = useNavigate();
 
             <td>
                   <button onClick={() => handleSoldProduct(product)} className="btn btn-outline  btn-ghost btn-lg">
-                    Add For Check-out
+                    Sold to Customer
                   </button>
                 </td>
 
