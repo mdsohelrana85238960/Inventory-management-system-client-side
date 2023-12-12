@@ -3,11 +3,13 @@ import swal from "sweetalert";
 import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 
 const Dashboard = () => {
     const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     const {user,LogOut} = useAuth();
     const handleSignOut = () =>{
         LogOut()
@@ -20,7 +22,7 @@ const Dashboard = () => {
       const {data: users = [],refetch} = useQuery({
         queryKey:['userRole', user?.email],
         queryFn: async () =>{
-            const res = await axiosSecure.get('/users');
+            const res = await axiosPublic.get('/users');
             return res.data;
         }
     })

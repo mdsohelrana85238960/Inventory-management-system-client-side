@@ -99,7 +99,7 @@ const router = createBrowserRouter([
         {
           path:'payments/:id',
           element:<Payment></Payment>,
-          loader:({params})=>fetch(`http://localhost:5000/create-payment-intent/${params.id}`)
+          loader:({params})=>fetch(`https://inventory-management-system-server-side.vercel.app/create-payment-intent/${params.id}`)
         },
         {
           path:'adminSaleSummary',
