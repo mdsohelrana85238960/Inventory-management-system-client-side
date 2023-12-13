@@ -24,6 +24,7 @@ const Login = () => {
         loadCaptchaEnginge(6)
     ]},[])
     const handleLogin = (e) =>{
+      
         e.preventDefault();
         const form =  e.target;
         const email = form.email.value;

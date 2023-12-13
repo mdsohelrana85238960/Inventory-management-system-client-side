@@ -2,10 +2,13 @@
 import swal from "sweetalert";
 import useAuth from "../hooks/useAuth";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 
 
 const CreateStore = () => {
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || '/dashboard/management' 
 const axiosPublic = useAxiosPublic();
 const {user} = useAuth();
 const handleShop = e =>{
@@ -26,7 +29,7 @@ const handleShop = e =>{
     axiosPublic.post('/shop', shopItem)
     
     .then(data => {
-        console.log(data);
+        console.log(data.data.insertedId);
         if (data.data.insertedId) {
             const shopManager ={
                 shopName,
@@ -39,6 +42,8 @@ const handleShop = e =>{
             .then(res =>{
                 if (res.data?.modifiedCount) {
                     swal("Shop create and User update add successfully");
+                    navigate(from, {replace:true});
+
                 }
             })
         }

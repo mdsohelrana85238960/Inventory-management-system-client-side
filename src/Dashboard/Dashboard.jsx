@@ -34,7 +34,7 @@ const Dashboard = () => {
 
     return (
         <div className="flex">
-            <div className="w-64 min-h-screen bg-orange-200 ">
+            <div className="w-64 text-white min-h-screen bg-[#363036] ">
                 <div> 
                 <a className="btn btn-ghost text-xl "> <span>DSCO.</span> <img className="w-12 rounded-full" src="https://media.istockphoto.com/id/480518610/zh/%E5%90%91%E9%87%8F/running-shoes-icon.jpg?s=1024x1024&w=is&k=20&c=El8si4EhW22ppjM9nOyA37mADk-0yrP4bqwWlWliWO4=" alt="" /> </a>
 
